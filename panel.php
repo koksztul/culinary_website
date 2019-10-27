@@ -48,7 +48,7 @@ require_once "connect.php";
 			        <a href="index.php">logo</a>
 			      </li>
 			      <li>
-			        <a href="przepisy.php">Przepisy</a>
+			        <a href="recipe.php">Przepisy</a>
 			      </li>
 						<li>
 			        <a href="quiz.php">Quiz</a>
@@ -72,7 +72,7 @@ require_once "connect.php";
 							<a href="index.php">logo</a>
 						</li>
 						<li>
-							<a href="przepisy.php">Przepisy</a>
+							<a href="recipe.php">Przepisy</a>
 						</li>
 						<li>
 							<a href="quiz.php">Quiz</a>
@@ -303,9 +303,69 @@ require_once "connect.php";
 if($row['id_group'] == 1)
 {
 	?>
-	<h2>Dodaj przepis</h2>
-	<form action="przepis.php" method="post" enctype="multipart/form-data">
+	<div id="panele">
+	<?php if(isset($message1)) {
+		echo $message1;
+	} ?>
+	<?php
+	if(isset($_POST["dodajprzepis"])) {
+	require_once "connect.php";
+	$target_dir = "img/";
+	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$uploadOk = 1;
+	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+	// Check if image file is a actual image or fake image
 
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+			if($check !== false) {
+					$message2 = "File is an image - " . $check["mime"] . ".";
+					$uploadOk = 1;
+			} else {
+					$message2 = "File is not an image.";
+					$uploadOk = 0;
+			}
+
+	// Check if file already exists
+	if (file_exists($target_file)) {
+			$message2 = "Sorry, file already exists.";
+			$uploadOk = 0;
+	}
+	// Check file size
+	if ($_FILES["fileToUpload"]["size"] > 50000000) {
+			$message2 = "Sorry, your file is too large.";
+			$uploadOk = 0;
+	}
+	// Allow certain file formats
+	if($imageFileType != "jpg" ) {
+			$message2 = "Sorry, only JPG files are allowed.";
+			$uploadOk = 0;
+	}
+	// Check if $uploadOk is set to 0 by an error
+	if ($uploadOk == 0) {
+			$message2 = "Pytanie i zdjecie nie zostalo dodane.";
+	// if everything is ok, try to upload file
+	} else {
+			if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+					$message2 = "Przepis i zdjecie ". basename( $_FILES["fileToUpload"]["name"]). " zostalo dodane.";
+					$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+					$nazwa = $_POST['nazwa'];
+					$przepis = $_POST['przepis'];
+					$skladniki = $_POST['skladniki'];
+					$img = substr(basename( $_FILES["fileToUpload"]["name"]), 0, -4);
+					$polaczenie->query("INSERT INTO przepisy VALUES (NULL, '$nazwa', '$przepis', '$skladniki', '$img')");
+
+
+			}
+			else {
+					$message2 = "Sorry, there was an error uploading your file.";
+			}
+	}
+	}
+	?>
+
+	<h2>Dodaj przepis</h2>
+	<form action="" method="post" enctype="multipart/form-data">
 				Podaj nazwe przepisu:<br>
 				<input type="text" name="nazwa">
 				<br>Podaj składniki przepisu:<br>
@@ -314,11 +374,71 @@ if($row['id_group'] == 1)
 				<input type="text" name="przepis">
 				<br>Wybierz zdjęcie potrawy:<br>
 				<input type="file" name="fileToUpload" id="fileToUpload">
-		<br><input type="submit" value="Dodaj przepis" name="submit">
+		<br><input type="submit" value="Dodaj przepis" name="dodajprzepis">
 	</form>
+	<?php if(isset($message2)) {
+		echo $message2;
+	} ?>
+	<?php
+	require_once "connect.php";
+	if((isset($_POST['dodajpyt']))) {
+	$target_dir = "img/";
+	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$uploadOk = 1;
+	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+	// Check if image file is a actual image or fake image
+
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+			if($check !== false) {
+					$message3 = "File is an image - " . $check["mime"] . ".";
+					$uploadOk = 1;
+			} else {
+					$message3 = "File is not an image.";
+					$uploadOk = 0;
+			}
+
+	// Check if file already exists
+	if (file_exists($target_file)) {
+			$message3 = "Sorry, file already exists.";
+			$uploadOk = 0;
+	}
+	// Check file size
+	if ($_FILES["fileToUpload"]["size"] > 50000000) {
+			$message3 = "Sorry, your file is too large.";
+			$uploadOk = 0;
+	}
+	// Allow certain file formats
+	if($imageFileType != "jpg" ) {
+			$message3 = "Sorry, only JPG files are allowed.";
+			$uploadOk = 0;
+	}
+	// Check if $uploadOk is set to 0 by an error
+	if ($uploadOk == 0) {
+			$message3 = "Zdjecie i pytanie nie zostalo dodane.";
+	// if everything is ok, try to upload file
+	} else {
+			if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+					$message3 = "Pytanie i zdjecie ". basename( $_FILES["fileToUpload"]["name"]). " zostalo dodane.";
+					$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+					$pytanie = $_POST['pytanie'];
+					$odpa = $_POST['odpa'];
+					$odpb = $_POST['odpb'];
+					$odpc = $_POST['odpc'];
+					$odpd = $_POST['odpd'];
+					$poprawna = $_POST['poprawna'];
+					$img = substr(basename( $_FILES["fileToUpload"]["name"]), 0, -4);
+					$polaczenie->query("INSERT INTO pyt VALUES (NULL, '$pytanie', '$odpa', '$odpb', '$odpc', '$odpd', '$poprawna', '$img')");
+			}
+			else {
+					$message3 = "Sorry, there was an error uploading your file.";
+			}
+	}
+	}
+	?>
 
 		<h2>Dodaj Pytanie</h2>
-		<form action="dodajpyt.php" method="post" enctype="multipart/form-data">
+		<form action="" method="post" enctype="multipart/form-data">
 					Podaj nazwe pytania:<br>
 					<input type="text" name="pytanie">
 					<br>Podaj odpA:<br>
@@ -333,9 +453,12 @@ if($row['id_group'] == 1)
 					<input type="text"name="poprawna">
 					<br>Dodaj zdjecie do pytania:<br>
 					<input type="file" name="fileToUpload" id="fileToUpload">
-			<br><input type="submit" value="Dodaj Pytanie" name="submit">
+			<br><input type="submit" value="Dodaj Pytanie" name="dodajpyt">
 		</form>
-		<?php
+		<?php if(isset($message3)) {
+			echo $message3;
+		} ?>
+<?php
 }
 
 if($row['id_group'] == 0){

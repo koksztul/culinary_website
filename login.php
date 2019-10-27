@@ -18,7 +18,7 @@
               <a href="index.php">logo</a>
             </li>
             <li>
-              <a href="przepisy.php">Przepisy</a>
+              <a href="recipe.php">Przepisy</a>
             </li>
             <li>
               <a href="quiz.php">Quiz</a>
@@ -42,7 +42,7 @@
               <a href="index.php">logo</a>
             </li>
             <li>
-              <a href="przepisy.php">Przepisy</a>
+              <a href="recipe.php">Przepisy</a>
             </li>
             <li>
               <a href="quiz.php">Quiz</a>
@@ -64,7 +64,7 @@
         </div>
     </div>
   <div id="logform">
-    <form action="zaloguj.php" method="post">
+    <form action="loginin.php" method="post">
         <label id="usr"><b>Username</b></label>
         <input type="text" id="username" placeholder="Enter Username" name="login" required>
         <br><label id="pasw"><b>Password</b></label>

@@ -21,7 +21,7 @@
 			        <a href="index.php">logo</a>
 			      </li>
 			      <li>
-			        <a href="przepisy.php">Przepisy</a>
+			        <a href="recipe.php">Przepisy</a>
 			      </li>
 						<li>
 			        <a href="quiz.php">Quiz</a>
@@ -45,7 +45,7 @@
 							<a href="index.php">logo</a>
 						</li>
 						<li>
-							<a href="przepisy.php">Przepisy</a>
+							<a href="recipe.php">Przepisy</a>
 						</li>
 						<li>
 							<a href="quiz.php">Quiz</a>
@@ -114,7 +114,7 @@ if ($result->num_rows > 0) {
 				<h3><?php echo $row["nazwa"]; ?></h3>
 				<p><?php echo substr($row["przygotowanie"], 0, 200); ?></p>
 				<div class="adivers">
-				<a href="przepisy.php">Read more</a>
+				<a href=".php">Read more</a>
 			</div>
 			</div>
 		</div>

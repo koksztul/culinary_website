@@ -20,7 +20,7 @@
 			        <a href="index.php">logo</a>
 			      </li>
 			      <li>
-			        <a href="przepisy.php">Przepisy</a>
+			        <a href="recipe.php">Przepisy</a>
 			      </li>
 						<li>
 			        <a href="quiz.php">Quiz</a>
@@ -44,7 +44,7 @@
 							<a href="index.php">logo</a>
 						</li>
 						<li>
-							<a href="przepisy.php">Przepisy</a>
+							<a href="recipe.php">Przepisy</a>
 						</li>
 						<li>
 							<a href="quiz.php">Quiz</a>
