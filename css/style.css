@@ -491,16 +491,11 @@ left: 145px;
     display: none;
 }
 .big-foot{
-width: 100%;
-height: auto;
-margin: auto;
-background: #272727;
-padding: 20px 0px;
-position: absolute;
-right: 0;
-bottom: 0;
-left: 0;
-text-align: center;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  background: #272727;
+  padding: 20px 0px
 }
 
 .footer-social-icons{
