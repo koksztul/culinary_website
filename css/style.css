@@ -413,22 +413,16 @@ font-size: 13px;
 outline: 5px solid #e5f2f8;
 }
 #logform {
-position: absolute;
-top: 0;
-right: 0;
-bottom: 0;
-left: 0;
-margin: auto;
-width: 400px;
-height: 304px;
-padding: 15px 0 0;
-background: #fff;
-border: 1px solid silver;
-font: 16px calibri;
-letter-spacing: -1px;
--webkit-box-shadow: 0 0 2px silver;
--moz-box-shadow: 0 0 2px silver;
-box-shadow: 0 0 2px silver;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 400px;
+  padding-top: 10%;
+  font: 16px calibri;
+  letter-spacing: -1px;
 }
 #regform {
 position: absolute;
@@ -438,9 +432,7 @@ bottom: 0;
 left: 0;
 margin: auto;
 width: 400px;
-
 padding-top: 10%;
-
 font: 16px calibri;
 letter-spacing: -1px;
 }
@@ -457,7 +449,6 @@ font-size: 16px;
 text-shadow: 0 0 1px silver;
 }
 #lower {
-background: #ecf2f5;
 width: 360px;
 padding: 5px 20px;
 margin-top: 20px;
